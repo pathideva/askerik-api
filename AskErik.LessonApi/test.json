@@ -1,0 +1,72 @@
+{
+  "id": "a3f9b2d4-7c6e-4f1a-9c2a-8b5d2e1f0a6b",
+  "slug": "build-a-birdhouse",
+  "title": "Build a Simple Birdhouse",
+  "description": "Step-by-step lesson to build a small wooden birdhouse suitable for backyard birds.",
+  "category": "Woodworking",
+  "duration": "2h 30m",
+  "difficulty": 2,
+  "image": "https://example.com/images/birdhouse.jpg",
+  "videoUrl": "https://youtu.be/example-video-id",
+  "rating": 4.8,
+  "reviewCount": 124,
+  "tools": [
+    "hammer",
+    "handsaw",
+    "drill",
+    "measuring tape"
+  ],
+  "materials": [
+    {
+      "name": "pine board (1x6)",
+      "quantity": "1 board (6 ft)"
+    },
+    {
+      "name": "exterior wood screws",
+      "quantity": "12"
+    },
+    {
+      "name": "weatherproof wood glue",
+      "quantity": "1 tube"
+    }
+  ],
+  "steps": [
+    "Cut the board pieces to size according to the plan.",
+    "Assemble the walls and roof using glue and screws.",
+    "Drill the entrance hole and ventilation.",
+    "Sand the edges and apply a weatherproof finish.",
+    "Mount the birdhouse in a sheltered location."
+  ],
+  "workshopId": "wks-2026-001",
+  "expertId": "usr-9f8a7b6c",
+  "helperIds": [
+    "usr-2a3b4c5d",
+    "usr-3c4d5e6f"
+  ],
+  "commentIds": [
+    "cmt-1001",
+    "cmt-1002"
+  ],
+  "workshop": {
+    "id": "wks-2026-001",
+    "title": "Backyard Wildlife Weekend"
+  },
+  "expert": {
+    "id": "usr-9f8a7b6c",
+    "name": "Ava Carpenter"
+  },
+  "helpers": [
+    {
+      "id": "usr-2a3b4c5d",
+      "name": "Ben Maker"
+    },
+    {
+      "id": "usr-3c4d5e6f",
+      "name": "Clara Wood"
+    }
+  ],
+  "createdAt": "2026-02-12T18:05:58.797Z",
+  "updatedAt": "2026-02-15T09:22:10.123Z",
+  "publishedAt": "2026-02-16T12:00:00.000Z",
+  "isPublished": true
+}

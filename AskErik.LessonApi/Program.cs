@@ -2,6 +2,7 @@ using AskErik.LessonApi.Models;
 using Microsoft.Azure.Cosmos;
 using System;
 using System.Linq;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,27 +15,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 // In development use Redis-backed repository instead of Cosmos for faster local iteration
 #if DEBUG
 // Reuse an existing IConnectionMultiplexer registration from the AppHost if present.
-if (!builder.Services.Any(sd => sd.ServiceType == typeof(StackExchange.Redis.IConnectionMultiplexer)))
-{
-    builder.Services.AddSingleton<StackExchange.Redis.IConnectionMultiplexer>(sp =>
-    {
-        // Try common configuration keys and environment variables the AppHost may provide.
-        var cfgString =
-            builder.Configuration.GetValue<string>("Redis:Connection")
-            ?? builder.Configuration.GetValue<string>("AppHost:Redis:Connection")
-            ?? Environment.GetEnvironmentVariable("Redis__Connection")
-            ?? Environment.GetEnvironmentVariable("APPHOST__REDIS__CONNECTION")
-            ?? "localhost:6379";
-
-        var cfg = StackExchange.Redis.ConfigurationOptions.Parse(cfgString);
-        // Allow the multiplexer to retry connecting rather than throwing on startup.
-        cfg.AbortOnConnectFail = false;
-        return StackExchange.Redis.ConnectionMultiplexer.Connect(cfg);
-    });
-}
+builder.AddRedisClient("cache");
 builder.Services.AddScoped<AskErik.LessonApi.Repositories.ILessonRepository, AskErik.LessonApi.Repositories.RedisLessonRepository>();
 #endif
 
