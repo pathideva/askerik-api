@@ -1,0 +1,45 @@
+@page "/lessons"
+@inject LessonApiClient LessonApi
+
+<PageTitle>Lessons</PageTitle>
+
+<h1>Lessons</h1>
+
+@if (lessons is null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (lessons.Length == 0)
+{
+    <p>No lessons found.</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var lesson in lessons)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    @if (!string.IsNullOrEmpty(lesson.Image))
+                    {
+                        <img class="card-img-top" src="@lesson.Image" alt="@lesson.Title" />
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@lesson.Title</h5>
+                        <p class="card-text">@lesson.Description</p>
+                        <a class="btn btn-primary" href="/lessons/@lesson.Id">View</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private AskErik.Web.Models.LessonDto[]? lessons;
+
+    protected override async Task OnInitializedAsync()
+    {
+        lessons = await LessonApi.GetLessonsAsync();
+    }
+}
