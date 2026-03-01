@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/LocalDev/">
+    <File Path="LocalDev/docker-compose.yml" />
+  </Folder>
   <Project Path="AskErik.AppHost/AskErik.AppHost.csproj" />
   <Project Path="AskErik.LessonApi/AskErik.LessonApi.csproj" />
   <Project Path="AskErik.ServiceDefaults/AskErik.ServiceDefaults.csproj" />

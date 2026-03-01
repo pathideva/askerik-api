@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 public class Lesson
@@ -29,6 +30,7 @@ public class Lesson
 
     // Requirements
     public List<string> Tools { get; set; } = new();
+    // Keep Materials as a JSON column in Postgres
     public List<Material> Materials { get; set; } = new();
 
     // Content
@@ -41,8 +43,13 @@ public class Lesson
     public List<string> CommentIds { get; set; } = new();
 
     // Denormalized data for display
+    [NotMapped]
     public LessonWorkshop? Workshop { get; set; }
+
+    [NotMapped]
     public LessonExpert? Expert { get; set; }
+
+    [NotMapped]
     public List<LessonHelper> Helpers { get; set; } = new();
 
     // Metadata

@@ -31,7 +31,8 @@ public class RedisLessonRepository : ILessonRepository
     {
         var val = await _db.StringGetAsync(Prefix + id);
         if (val.IsNullOrEmpty) return null;
-        return JsonSerializer.Deserialize<Lesson>((string)val)!;
+        var lesson = JsonSerializer.Deserialize<Lesson>(val.ToString());
+        return lesson;
     }
 
     public async Task<Lesson?> GetBySlugAsync(string slug)
@@ -42,7 +43,7 @@ public class RedisLessonRepository : ILessonRepository
         {
             var val = await _db.StringGetAsync(key);
             if (val.IsNullOrEmpty) continue;
-            var lesson = JsonSerializer.Deserialize<Lesson>((string)val);
+            var lesson = JsonSerializer.Deserialize<Lesson>(val.ToString());
             if (lesson?.Slug == slug) return lesson;
         }
 
@@ -57,7 +58,7 @@ public class RedisLessonRepository : ILessonRepository
         {
             var val = await _db.StringGetAsync(key);
             if (val.IsNullOrEmpty) continue;
-            var lesson = JsonSerializer.Deserialize<Lesson>((string)val);
+            var lesson = JsonSerializer.Deserialize<Lesson>(val.ToString());
             if (lesson?.WorkshopId == workshopId) results.Add(lesson);
         }
 

@@ -1,3 +1,5 @@
+using Aspire.Hosting;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache");
@@ -11,8 +13,6 @@ var lessonApi = builder.AddProject<Projects.AskErik_LessonApi>("askerik-lessonap
 builder.AddProject<Projects.AskErik_Web>("webfrontend")
     .WithExternalHttpEndpoints()
     .WithHttpHealthCheck("/health")
-    .WithReference(cache)
-    .WaitFor(cache)
     .WithReference(lessonApi)
     .WaitFor(lessonApi);
 

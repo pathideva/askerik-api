@@ -7,7 +7,7 @@ public enum Difficulty
     Advanced
 }
 
-public class Material
+public record Material
 {
     public string Name { get; set; } = string.Empty;
     public string Quantity { get; set; } = string.Empty;
