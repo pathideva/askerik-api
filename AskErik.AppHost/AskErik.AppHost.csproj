@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AskErik.LessonApi\AskErik.LessonApi.csproj" />
+    <ProjectReference Include="..\AskErik.Api\AskErik.Api.csproj" />
     <ProjectReference Include="..\AskErik.Web\AskErik.Web.csproj" />
   </ItemGroup>
 
