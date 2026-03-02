@@ -2,18 +2,18 @@ using Aspire.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cache = builder.AddRedis("cache");
+//var cache = builder.AddRedis("cache");
 
-var lessonApi = builder.AddProject<Projects.AskErik_LessonApi>("askerik-lessonapi")
+var askerikapi = builder.AddProject<Projects.AskErik_Api>("askerik-api")
     .WithExternalHttpEndpoints()
-    .WithReference(cache)
-    .WaitFor(cache)
+    //.WithReference(cache)
+    //.WaitFor(cache)
     .WithHttpHealthCheck("/health");
 
 builder.AddProject<Projects.AskErik_Web>("webfrontend")
     .WithExternalHttpEndpoints()
     .WithHttpHealthCheck("/health")
-    .WithReference(lessonApi)
-    .WaitFor(lessonApi);
+    .WithReference(askerikapi)
+    .WaitFor(askerikapi);
 
 builder.Build().Run();
