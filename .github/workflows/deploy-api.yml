@@ -1,0 +1,33 @@
+name: Deploy AskErik.Api to Azure App Service
+
+on:
+  push:
+    branches: [ "develop" ]
+
+jobs:
+  deploy-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '10.x'
+
+      - name: Restore
+        run: dotnet restore AskErik.Api/AskErik.Api.csproj
+
+      - name: Build
+        run: dotnet build --no-restore -c Release AskErik.Api/AskErik.Api.csproj
+
+      - name: Publish
+        run: dotnet publish AskErik.Api/AskErik.Api.csproj -c Release -o publish
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'YOUR_APP_SERVICE_NAME'           # replace with your App Service name if desired
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./publish
