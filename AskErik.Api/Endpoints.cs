@@ -8,7 +8,7 @@ public static class Endpoints
 {
     public static void MapEndpoints(this WebApplication app)
     {
-        var endpoints =app.MapGroup("")
+        var endpoints =app.MapGroup("api")
            .AddEndpointFilter<RequestLoggingFilter>();
 
         endpoints.MapLessonEndpoints();
