@@ -36,11 +36,12 @@ jobs:
       - name: Set Postgres connection string in App Service
         # Uses the secret DB_PASSWORD to inject the password without committing it to repo
         run: |
-          az webapp config connection-string set \
-            --resource-group "${{ env.AZURE_RG }}" \
-            --name "${{ env.AZURE_WEBAPP_NAME }}" \
-            --settings "tellerikdb=Host=db.bsyucximwshearuayasq.supabase.co;Database=postgres;Username=postgres;Password=${{ secrets.DB_PASSWORD }};SSL Mode=Require;Trust Server Certificate=true" \
-            --connection-string-type PostgreSQL
+          run: |
+            az webapp config connection-string set \
+              --resource-group "${{ secrets.AZURE_RG }}" \
+              --name "${{ secrets.AZURE_WEBAPP_NAME }}" \
+              --settings "tellerikdb=Host=aws-1-eu-west-1.pooler.supabase.com;Database=postgres;Username=postgres.bsyucximwshearuayasq;Password=${{ secrets.DB_PASSWORD }};SSL Mode=Require;Trust Server Certificate=true" \
+              --connection-string-type PostgreSQL
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
