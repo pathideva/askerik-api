@@ -19,7 +19,8 @@ public static class Endpoints
         var endpoints = app.MapGroup("/lessons");
 
         endpoints.MapPublicGroup()
-            .MapEndpoint<GetLesson>();
+            .MapEndpoint<GetLesson>()
+            .MapEndpoint<CreateLesson>();
     }
 
     private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app) where TEndpoint : IEndpoint

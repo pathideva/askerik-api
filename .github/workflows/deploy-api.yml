@@ -40,7 +40,7 @@ jobs:
             az webapp config connection-string set \
               --resource-group "${{ secrets.AZURE_RG }}" \
               --name "${{ secrets.AZURE_WEBAPP_NAME }}" \
-              --settings "tellerikdb=Host=aws-1-eu-west-1.pooler.supabase.com;Database=postgres;Username=postgres.bsyucximwshearuayasq;Password=${{ secrets.DB_PASSWORD }};SSL Mode=Require;Trust Server Certificate=true" \
+              --settings "tellerikdb=Host=aws-1-eu-north-1.pooler.supabase.com;Database=postgres;Username=postgres.suerbvndoljmusgzyccm;Password=${{ secrets.DB_PASSWORD }};SSL Mode=Require;Trust Server Certificate=true" \
               --connection-string-type PostgreSQL
 
       - name: Deploy to Azure Web App
